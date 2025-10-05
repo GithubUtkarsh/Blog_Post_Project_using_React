@@ -5,6 +5,8 @@ import Logo from "./Logo.jsx";
 import Login from "./Login";
 import PostCard from "./PostCard";
 import Select from "./Select";
+import Button from "./Button";
+import Input from "./Input";
 
 
 export { 
@@ -15,4 +17,6 @@ export {
     Login,
     PostCard,
     Select,
+    Button,
+    Input,
 };
