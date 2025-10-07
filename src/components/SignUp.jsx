@@ -15,11 +15,11 @@ function SignUp() {
     const signup = async (data) =>{
         setError("");
         try {
-            const userData = await authService.createAccount(data);
+            const userData = await authService.createAccount(data.email, data.password, data.name);
             if(userData){
                 const userData = await authService.getCurrentUser();
                 if(userData){
-                    dispatch(login(userData));
+                    dispatch(login({userData}));
                     navigate("/");
                 }
             }
@@ -28,7 +28,7 @@ function SignUp() {
         }
     }
     return (
-        <div className='flex items-center justify-center '>
+        <div className='flex items-center justify-center py-[41px] '>
             <div className='mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10'>
             <div className='mb-2 flex justify-center'>
                 <span className='inline-block w-full max-w-[100px]'>
@@ -39,7 +39,7 @@ function SignUp() {
             <p className='text-center mt-2 text-base text-black/60'>
                 Already have an account? &nbsp; <Link
                     to="/login"
-                    className='font-medium text-primary transition-all duration-200 hover-underline'
+                    className='font-medium text-primary transition-all duration-200 hover-underline hover:text-blue-600'
                 >
                     Sign In
                 </Link>
@@ -78,7 +78,7 @@ function SignUp() {
                         })}
                         />
 
-                        <Button type="submit" className="w-full" >
+                        <Button type="submit" className="w-full hover:bg-blue-800"  >
                             Create Account
                         </Button>
 

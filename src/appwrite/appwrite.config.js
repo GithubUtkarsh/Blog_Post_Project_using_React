@@ -15,6 +15,13 @@ export class Service{
 
     async createPost ({title,slug,content,featuredImage,status,userID}){
         try {
+            console.log("Creating post with:", {
+                databaseId: config.appwriteDatabaseId,
+                tableId: config.appwriteTableId,
+                slug,
+                data: { title, content, featuredImage, status, userID }
+            });
+            
             return await this.databases.createDocument(
                 config.appwriteDatabaseId,
                 config.appwriteTableId,
@@ -28,7 +35,9 @@ export class Service{
                 }
             )
         } catch (error) {
-            console.log("Appwrite Service :: createPost :: error",error);
+            console.log("Appwrite Service :: createPost :: error", error);
+            console.log("Error details:", error.message, error.code, error.type);
+            throw error;
         }
     }
 
@@ -118,6 +127,18 @@ export class Service{
 
     getFilePreview(fileID){
         return this.bucket.getFilePreview(
+            config.appwriteBucketId,
+            fileID,
+            2000, // width
+            2000, // height
+            'top', // gravity
+            100, // quality
+        )
+    }
+
+    // Alternative method to get file URL directly
+    getFileView(fileID){
+        return this.bucket.getFileView(
             config.appwriteBucketId,
             fileID
         )

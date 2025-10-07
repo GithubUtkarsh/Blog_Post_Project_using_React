@@ -6,4 +6,13 @@ const config = {
     appwriteBucketId: String(import.meta.env.VITE_APPWRITE_BUCKET_ID),
 }
 
+// Debug: Log config values (remove in production)
+console.log("Appwrite Config:", {
+    url: config.appwriteUrl,
+    projectId: config.appwriteProjectId,
+    databaseId: config.appwriteDatabaseId,
+    tableId: config.appwriteTableId,
+    bucketId: config.appwriteBucketId
+});
+
 export default config;

@@ -32,29 +32,28 @@ const Header = () => {
         },
         {
             name: 'Add Posts',
-            slug: '/add-posts',
+            slug: '/add-post',
             active: authStatus,
         }
-        ,
     ]
 
     return (
-        <header className='py-3 shadow bg-gray-400'>
-            <Container>
-                <div className='flex'>
-                    <div className='mr-4'>
+        <header className='py-3 shadow bg-gray-500 font-medium '>
+            <Container className='w-full'>
+                <div className='flex justify-between'>
+                    <div className='m-4 text-2xl'>
                         <Link to="/">
                             <Logo width='70px' />
                         </Link>
                     </div>
                     <div>
-                        <ul className='flex ml-auto'>
+                        <ul className='flex m-4'>
                             {navItems.map((item) =>
                                 item.active ? (
                                     <li key={item.name}>
                                         <button
                                             onClick={() => navigate(item.slug)}
-                                            className='inline-block px-6 py-2 rounded-full duration-200 hover:bg-blue-100'
+                                            className='inline-block px-6 py-1 rounded-full duration-200 hover:text-blue-100 hover:cursor-pointer text-lg '
                                         >{item.name}</button>
                                     </li>
                                 ) : null
